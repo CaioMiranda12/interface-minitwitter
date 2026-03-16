@@ -1,3 +1,7 @@
-export function RegisterPage() {
-  return <h1>Register page</h1>
+export const RegisterPage = () => {
+  return (
+    <div>
+      <h1>Hello world</h1>
+    </div>
+  )
 }

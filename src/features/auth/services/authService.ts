@@ -36,3 +36,7 @@ export const login = async (data: LoginData): Promise<LoginResponse> => {
   const response = await api.post<LoginResponse>('/auth/login', data)
   return response.data
 }
+
+export const logout = async (): Promise<void> => {
+  await api.post('/auth/logout')
+}

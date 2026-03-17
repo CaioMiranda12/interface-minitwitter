@@ -10,7 +10,7 @@ interface PostProps {
   likesCount: number
 }
 
-export function Post({ title, content, image, authorId, createdAt, authorName, likesCount }: PostProps) {
+export function PostCard({ title, content, image, authorId, createdAt, authorName, likesCount }: PostProps) {
   return (
     <div className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 flex flex-col gap-3">
       <header className="flex items-center gap-1.5">

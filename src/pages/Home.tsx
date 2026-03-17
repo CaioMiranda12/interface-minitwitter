@@ -1,7 +1,7 @@
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useLogout } from "@/features/auth/hooks/useLogout";
-import { Post } from "@/features/posts/components/Post";
-import { CiHeart, CiSearch } from "react-icons/ci";
+import { PostCard } from "@/features/posts/components/PostCard";
+import { CiSearch } from "react-icons/ci";
 import { HiOutlinePhoto } from "react-icons/hi2";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useNavigate } from "react-router";
@@ -80,7 +80,7 @@ export function Home() {
           </div>
 
           <div className="mt-8 flex flex-col gap-8">
-            <Post
+            <PostCard
               title="Iniciando um novo processo seletivo!"
               content="Really excited to share what we've been working on. The team has put in countless hours to make this seamless. Check out the screenshot below! #product #launch"
               image={'2024-06-15_20-30-00.png'}
@@ -90,7 +90,7 @@ export function Home() {
               likesCount={0}
             />
 
-            <Post
+            <PostCard
               title="Iniciando um novo processo seletivo!"
               content="Really excited to share what we've been working on. The team has put in countless hours to make this seamless. Check out the screenshot below! #product #launch"
               image={null}
@@ -99,6 +99,8 @@ export function Home() {
               authorName="Lucas Costa"
               likesCount={0}
             />
+
+
           </div>
 
 

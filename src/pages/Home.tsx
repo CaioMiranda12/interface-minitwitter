@@ -1,5 +1,6 @@
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useLogout } from "@/features/auth/hooks/useLogout";
+import { Post } from "@/features/posts/components/Post";
 import { CiHeart, CiSearch } from "react-icons/ci";
 import { HiOutlinePhoto } from "react-icons/hi2";
 import { RiLogoutBoxLine } from "react-icons/ri";
@@ -79,29 +80,25 @@ export function Home() {
           </div>
 
           <div className="mt-8 flex flex-col gap-8">
-            <div className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 flex flex-col gap-3">
-              <header className="flex items-center gap-1.5">
-                <h3 className="text-[#314158] font-bold text-base">Lucas Costa</h3>
-                <span className="text-twitterGray font-normal text-sm">@lucascosta</span>
-                <span className="text-twitterGray font-normal text-sm">.</span>
-                <span className="text-twitterGray font-normal text-sm">15/02/2026</span>
-              </header>
+            <Post
+              title="Iniciando um novo processo seletivo!"
+              content="Really excited to share what we've been working on. The team has put in countless hours to make this seamless. Check out the screenshot below! #product #launch"
+              image={'2024-06-15_20-30-00.png'}
+              authorId="1"
+              createdAt="15/02/2026"
+              authorName="Lucas Costa"
+              likesCount={0}
+            />
 
-              <main>
-                <p className="mb-1 text-[#314158] font-bold text-lg">Iniciando um novo processo seletivo!</p>
-                <p className="text-[#314158] font-normal text-base">
-                  Really excited to share what we've been working on. The team has put in
-                  countless hours to make this seamless. Check out the screenshot below!
-                  #product #launch
-                </p>
-
-                <div className="w-full h-[200px] bg-gray-700 my-3 rounded-lg"></div>
-
-                <button>
-                  <CiHeart size={24} color="red" />
-                </button>
-              </main>
-            </div>
+            <Post
+              title="Iniciando um novo processo seletivo!"
+              content="Really excited to share what we've been working on. The team has put in countless hours to make this seamless. Check out the screenshot below! #product #launch"
+              image={null}
+              authorId="1"
+              createdAt="15/02/2026"
+              authorName="Lucas Costa"
+              likesCount={0}
+            />
           </div>
 
 

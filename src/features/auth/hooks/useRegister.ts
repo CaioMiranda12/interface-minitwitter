@@ -10,7 +10,6 @@ export const useRegister = () => {
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: (data: RegisterFormData) => register(data),
     onSuccess: () => {
-      console.log("toast disparado")
       toast.success('Conta criada com sucesso!')
 
       setTimeout(() => {

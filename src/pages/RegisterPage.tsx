@@ -1,8 +1,9 @@
 import { RegisterForm } from "@/features/auth/components/RegisterForm"
 
 export const RegisterPage = () => {
+
   return (
-    <div className="flex justify-center items-center h-[100vh] bg-[#FAFAFA]">
+    <div className="flex justify-center items-center h-[100vh] bg-[#FAFAFA] p-16 sm:p-0">
       <div>
         <header>
           <h1 className="text-primary font-bold text-4xl text-center">Mini Twitter</h1>
@@ -22,7 +23,9 @@ export const RegisterPage = () => {
           <h2 className="text-primary text-3xl font-semibold">Olá, vamos começar!</h2>
           <p className="text-twitterGray text-base font-normal">Por favor, insira os dados solicitados para fazer cadastro.</p>
 
-          <RegisterForm />
+          <div className="mt-6">
+            <RegisterForm />
+          </div>
         </main>
       </div>
     </div>

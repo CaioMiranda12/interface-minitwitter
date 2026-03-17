@@ -1,4 +1,5 @@
 import { LoginForm } from "@/features/auth/components/LoginForm"
+import { NavLink } from "react-router-dom"
 
 export const LoginPage = () => {
 
@@ -10,13 +11,19 @@ export const LoginPage = () => {
         </header>
 
         <nav className="mt-[56px] flex">
-          <a href="/login" className="text-primary font-bold text-base flex-1 text-center border-b-[3px] border-b-primary">
+          <NavLink to="/login" className={({ isActive }) => `font-bold text-base flex-1 text-center pb-1
+          ${isActive ? 'text-primary border-b-primary border-b-[3px]' : 'text-twitterGray border-b-twitterGray border-b'}
+          `
+          }>
             Login
-          </a>
+          </NavLink>
 
-          <a href="/register" className="text-twitterGray font-bold text-base flex-1 text-center border-b border-b-twitterGray">
+          <NavLink to="/register" className={({ isActive }) => `font-bold text-base flex-1 text-center pb-1
+          ${isActive ? 'text-primary border-b-primary border-b-[3px]' : 'text-twitterGray border-b-twitterGray border-b'}
+          `
+          }>
             Cadastrar
-          </a>
+          </NavLink>
         </nav>
 
         <main className="mt-6">

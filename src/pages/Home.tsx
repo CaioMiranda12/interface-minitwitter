@@ -1,6 +1,7 @@
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useLogout } from "@/features/auth/hooks/useLogout";
 import { PostCard } from "@/features/posts/components/PostCard";
+import { Timeline } from "@/features/posts/components/Timeline";
 import { CiSearch } from "react-icons/ci";
 import { HiOutlinePhoto } from "react-icons/hi2";
 import { RiLogoutBoxLine } from "react-icons/ri";
@@ -80,33 +81,16 @@ export function Home() {
           </div>
 
           <div className="mt-8 flex flex-col gap-8">
-            <PostCard
-              title="Iniciando um novo processo seletivo!"
-              content="Really excited to share what we've been working on. The team has put in countless hours to make this seamless. Check out the screenshot below! #product #launch"
-              image={'2024-06-15_20-30-00.png'}
-              authorId="1"
-              createdAt="15/02/2026"
-              authorName="Lucas Costa"
-              likesCount={0}
-            />
-
-            <PostCard
-              title="Iniciando um novo processo seletivo!"
-              content="Really excited to share what we've been working on. The team has put in countless hours to make this seamless. Check out the screenshot below! #product #launch"
-              image={null}
-              authorId="1"
-              createdAt="15/02/2026"
-              authorName="Lucas Costa"
-              likesCount={0}
-            />
-
-
+            <Timeline />
           </div>
-
 
 
         </div>
       </main>
+
+      <footer className="py-4 px-10 pt-[80px] bg-[#FAFAFA]">
+        <h2 className="text-primary text-lg font-bold">Mini Twitter</h2>
+      </footer>
     </div>
   )
 }

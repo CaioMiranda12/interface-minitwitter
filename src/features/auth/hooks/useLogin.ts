@@ -18,7 +18,7 @@ export const useLogin = () => {
       localStorage.setItem('token', response.token)
 
       toast.success('Seja bem-vindo ao Mini-Twitter!')
-      navigate('/feed')
+      navigate('/')
     },
 
     onError: (error: any) => {

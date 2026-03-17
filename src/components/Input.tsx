@@ -37,7 +37,7 @@ export default function Input<T extends FieldValues>({
               {...field}
               type={typeInput}
               placeholder={placeholderText}
-              className='w-full outline-none '
+              className='w-full outline-none placeholder:text-twitterGray'
             />
 
             {Icon && <Icon size={24} color="#62748E" />}

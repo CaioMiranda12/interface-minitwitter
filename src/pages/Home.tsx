@@ -1,8 +1,13 @@
+import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useLogout } from "@/features/auth/hooks/useLogout";
 import { CiSearch } from "react-icons/ci";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import { useNavigate } from "react-router";
 
 export function Home() {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  const { logout } = useLogout();
 
   return (
     <div>
@@ -19,23 +24,34 @@ export function Home() {
           />
         </div>
 
-        <nav>
-          <button onClick={() => navigate('/register')}
-            className="text-twitterGray font-bold text-base border border-[#E2E8F0] rounded-full py-2 w-[156px]
+        {!isAuthenticated ? (
+          <nav>
+            <button onClick={() => navigate('/register')}
+              className="text-twitterGray font-bold text-base border border-[#E2E8F0] rounded-full py-2 w-[156px]
           hover:bg-twitterGray hover:text-white transition-colors duration-300 active:bg-twitterGray/80 active:text-white
           ">
-            Registrar-se
-          </button>
+              Registrar-se
+            </button>
 
-          <button
-            onClick={() => navigate('/login')}
-            className="text-white font-bold text-base bg-primary rounded-full py-2 w-[156px]
+            <button
+              onClick={() => navigate('/login')}
+              className="text-white font-bold text-base bg-primary rounded-full py-2 w-[156px]
           shadow-[0px_4px_6px_-4px_rgba(13,147,242,0.2),0px_10px_15px_-3px_rgba(13,147,242,0.2)]
           hover:opacity-80 transition-opacity duration-300 active:opacity-60
           ">
-            Login
+              Login
+            </button>
+          </nav>
+        ) : (
+          <button
+            onClick={logout}
+            className="bg-primary p-2.5 rounded-full
+        shadow-[0px_4px_6px_-4px_rgba(13,147,242,0.2),0px_10px_15px_-3px_rgba(13,147,242,0.2)]
+        hover:opacity-80 transition-opacity duration-300 active:opacity-60
+        ">
+            <RiLogoutBoxLine size={20} color='white' />
           </button>
-        </nav>
+        )}
       </header>
     </div>
   )

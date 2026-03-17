@@ -1,16 +1,12 @@
 import { CiHeart } from "react-icons/ci";
-
-interface PostProps {
-  title: string
-  content: string
-  image?: string | null
-  authorId: string
-  createdAt: string
-  authorName: string
-  likesCount: number
+import type { Post } from "../services/postsService";
+interface PostCardProps {
+  post: Post
 }
 
-export function PostCard({ title, content, image, authorId, createdAt, authorName, likesCount }: PostProps) {
+export function PostCard({ post }: PostCardProps) {
+  const { title, content, image, authorName, createdAt, likesCount } = post
+
   return (
     <div className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 flex flex-col gap-3">
       <header className="flex items-center gap-1.5">

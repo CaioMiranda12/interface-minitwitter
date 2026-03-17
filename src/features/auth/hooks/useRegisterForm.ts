@@ -7,14 +7,19 @@ export const useRegisterForm = () => {
   const { mutate, isPending, isError, error } = useRegister()
 
   const {
-    register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    }
   })
 
   const onSubmit = handleSubmit((data) => mutate(data))
 
-  return { register, onSubmit, errors, isPending, isError, error }
+  return { onSubmit, errors, isPending, isError, error, control }
 }

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 export const useLogin = () => {
   const navigate = useNavigate()
 
-  const { mutate, isPending, isError, error } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (data: LoginFormData) => login(data),
     onSuccess: (response) => {
       if (!response.token) {
@@ -27,5 +27,5 @@ export const useLogin = () => {
     }
   })
 
-  return { mutate, isPending, isError, error }
+  return { mutate, isPending }
 }

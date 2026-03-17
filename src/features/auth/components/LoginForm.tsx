@@ -5,7 +5,7 @@ import type { LoginFormData } from '../schemas/authSchemas';
 import { useLoginForm } from '../hooks/useLoginForm';
 
 export const LoginForm = () => {
-  const { onSubmit, errors, isPending, isError, error, control } = useLoginForm()
+  const { onSubmit, errors, isPending, control } = useLoginForm()
 
   return (
     <form onSubmit={onSubmit} className='flex flex-col gap-5'>
@@ -28,12 +28,6 @@ export const LoginForm = () => {
         placeholderText='Insira a sua senha'
         icon={IoEyeOutline}
       />
-
-      {isError && (
-        <span>
-          {(error as any)?.response?.data?.message ?? 'Erro ao criar conta'}
-        </span>
-      )}
 
       <button
         type="submit"

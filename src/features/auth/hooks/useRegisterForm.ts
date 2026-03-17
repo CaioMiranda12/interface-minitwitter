@@ -4,7 +4,7 @@ import { registerSchema, type RegisterFormData } from '@/features/auth/schemas/a
 import { useRegister } from './useRegister'
 
 export const useRegisterForm = () => {
-  const { mutate, isPending, isError, error } = useRegister()
+  const { mutate, isPending } = useRegister()
 
   const {
     handleSubmit,
@@ -21,5 +21,5 @@ export const useRegisterForm = () => {
 
   const onSubmit = handleSubmit((data) => mutate(data))
 
-  return { onSubmit, errors, isPending, isError, error, control }
+  return { onSubmit, errors, isPending, control }
 }

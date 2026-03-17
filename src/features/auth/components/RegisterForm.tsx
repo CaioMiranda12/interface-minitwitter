@@ -6,7 +6,7 @@ import { IoEyeOutline } from 'react-icons/io5';
 import type { RegisterFormData } from '../schemas/authSchemas';
 
 export const RegisterForm = () => {
-  const { onSubmit, errors, isPending, isError, error, control } = useRegisterForm()
+  const { onSubmit, errors, isPending, control } = useRegisterForm()
 
   return (
     <form onSubmit={onSubmit} className='flex flex-col gap-5'>
@@ -39,12 +39,6 @@ export const RegisterForm = () => {
         placeholderText='Insira a sua senha'
         icon={IoEyeOutline}
       />
-
-      {isError && (
-        <span>
-          {(error as any)?.response?.data?.message ?? 'Erro ao criar conta'}
-        </span>
-      )}
 
       <button
         type="submit"

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 export const useRegister = () => {
   const navigate = useNavigate()
 
-  const { mutate, isPending, isError, error } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (data: RegisterFormData) => register(data),
     onSuccess: () => {
       toast.success('Conta criada com sucesso!')
@@ -15,9 +15,13 @@ export const useRegister = () => {
       setTimeout(() => {
         navigate('/login')
       }, 1500)
-
     },
+
+    onError: (error: any) => {
+      const message = error.response?.data?.message || 'Erro ao criar conta.'
+      toast.error(message)
+    }
   })
 
-  return { mutate, isPending, isError, error }
+  return { mutate, isPending }
 }

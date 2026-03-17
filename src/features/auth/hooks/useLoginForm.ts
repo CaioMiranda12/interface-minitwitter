@@ -4,7 +4,7 @@ import { LoginSchema, type LoginFormData } from '@/features/auth/schemas/authSch
 import { useLogin } from './useLogin'
 
 export const useLoginForm = () => {
-  const { mutate, isPending, isError, error } = useLogin()
+  const { mutate, isPending } = useLogin()
 
   const {
     handleSubmit,
@@ -20,5 +20,5 @@ export const useLoginForm = () => {
 
   const onSubmit = handleSubmit((data) => mutate(data))
 
-  return { onSubmit, errors, isPending, isError, error, control }
+  return { onSubmit, errors, isPending, control }
 }

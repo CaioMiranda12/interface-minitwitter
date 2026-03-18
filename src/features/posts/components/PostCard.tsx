@@ -2,6 +2,8 @@ import { CiHeart } from "react-icons/ci";
 import { deletePost, type Post } from "../services/postsService";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
+import { useState } from "react";
+import { EditPostModal } from "./EditPostModal";
 interface PostCardProps {
   post: Post
 }
@@ -12,6 +14,8 @@ export function PostCard({ post }: PostCardProps) {
   const { isAuthenticated, user } = useAuth()
 
   const isOwner = isAuthenticated && user.id === authorId
+  const [isEditing, setIsEditing] = useState(false)
+
 
   return (
     <div className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 flex flex-col gap-3">
@@ -24,7 +28,7 @@ export function PostCard({ post }: PostCardProps) {
         {isOwner && (
           <div className="ml-auto flex items-center gap-2">
             <button
-              onClick={() => console.log('editar', user.id)}
+              onClick={() => setIsEditing(true)}
               className="text-twitterGray hover:text-primary transition-colors"
             >
               <FiEdit2 size={16} />
@@ -59,6 +63,13 @@ export function PostCard({ post }: PostCardProps) {
           <span>{likesCount}</span>
         </div>
       </main>
+
+      {isEditing && (
+        <EditPostModal
+          post={post}
+          onClose={() => setIsEditing(false)}
+        />
+      )}
     </div>
   )
 }

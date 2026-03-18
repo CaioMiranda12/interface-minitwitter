@@ -1,10 +1,12 @@
 import { usePosts } from '@/features/posts/hooks/usePosts'
 import { PostCard } from './PostCard'
+import { useState } from 'react'
+import { Pagination } from '@/components/Pagination'
 
 export const Timeline = () => {
-  const { data, isLoading, isError } = usePosts()
+  const [page, setPage] = useState(1)
 
-  console.log(data)
+  const { data, isLoading, isError, totalPages } = usePosts({ page })
 
   if (isLoading) return <p>Carregando posts...</p>
   if (isError) return <p>Erro ao carregar posts.</p>
@@ -15,9 +17,11 @@ export const Timeline = () => {
         <PostCard key={post.id} post={post} />
       ))}
 
-      <div>
-        Botoes de de paginação
-      </div>
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={setPage}
+      />
     </div>
   )
 }

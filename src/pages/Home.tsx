@@ -1,9 +1,8 @@
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useLogout } from "@/features/auth/hooks/useLogout";
-import { PostCard } from "@/features/posts/components/PostCard";
+import { PostForm } from "@/features/posts/components/PostForm";
 import { Timeline } from "@/features/posts/components/Timeline";
 import { CiSearch } from "react-icons/ci";
-import { HiOutlinePhoto } from "react-icons/hi2";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useNavigate } from "react-router";
 
@@ -58,27 +57,8 @@ export function Home() {
       </header>
 
       <main className="bg-[#FAFAFA] min-h-[calc(100vh-65px)] flex justify-center">
-        <div className="mt-9 w-[640px] bg-blue-200">
-          <div className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4">
-            <textarea placeholder="O que está acontecendo?"
-              className="w-full resize-none outline-none h-[72px]"
-            />
-
-            <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-4">
-              <button>
-                <HiOutlinePhoto size={32} className="text-primary" />
-              </button>
-
-              <button
-                className="bg-primary text-white font-bold text-base rounded-full py-2 px-4
-            shadow-[0px_4px_6px_-4px_rgba(13,147,242,0.2),0px_10px_15px_-3px_rgba(13,147,242,0.2)]
-            hover:opacity-80 transition-opacity duration-300 active:opacity-60
-            "
-              >
-                Postar
-              </button>
-            </div>
-          </div>
+        <div className="mt-9 w-[640px]">
+          <PostForm />
 
           <div className="mt-8 flex flex-col gap-8">
             <Timeline />

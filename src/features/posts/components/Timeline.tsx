@@ -2,11 +2,17 @@ import { usePosts } from '@/features/posts/hooks/usePosts'
 import { PostCard } from './PostCard'
 import { useState } from 'react'
 import { Pagination } from '@/components/Pagination'
+import { useSearchParams } from 'react-router-dom'
 
 export const Timeline = () => {
   const [page, setPage] = useState(1)
+  const [searchParams] = useSearchParams()
+  const search = searchParams.get('search') ?? ''
 
-  const { data, isLoading, isError, totalPages } = usePosts({ page })
+  const { data, isLoading, isError, totalPages } = usePosts({
+    page: search ? 1 : page,
+    search
+  })
 
   if (isLoading) return <p>Carregando posts...</p>
   if (isError) return <p>Erro ao carregar posts.</p>

@@ -1,11 +1,17 @@
 import { CiHeart } from "react-icons/ci";
-import type { Post } from "../services/postsService";
+import { deletePost, type Post } from "../services/postsService";
+import { useAuth } from "@/features/auth/hooks/useAuth";
+import { FiEdit2, FiTrash2 } from "react-icons/fi";
 interface PostCardProps {
   post: Post
 }
 
 export function PostCard({ post }: PostCardProps) {
-  const { title, content, image, authorName, createdAt, likesCount } = post
+  const { title, content, image, authorName, createdAt, likesCount, authorId, id } = post
+
+  const { isAuthenticated, user } = useAuth()
+
+  const isOwner = isAuthenticated && user.id === authorId
 
   return (
     <div className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 flex flex-col gap-3">
@@ -14,6 +20,24 @@ export function PostCard({ post }: PostCardProps) {
         <span className="text-twitterGray font-normal text-sm">@{authorName.toLowerCase().replace(' ', '')}</span>
         <span className="text-twitterGray font-normal text-sm">.</span>
         <span className="text-twitterGray font-normal text-sm">{createdAt}</span>
+
+        {isOwner && (
+          <div className="ml-auto flex items-center gap-2">
+            <button
+              onClick={() => console.log('editar', user.id)}
+              className="text-twitterGray hover:text-primary transition-colors"
+            >
+              <FiEdit2 size={16} />
+            </button>
+
+            <button
+              onClick={() => deletePost(id)}
+              className="text-twitterGray hover:text-red-500 transition-colors"
+            >
+              <FiTrash2 size={16} />
+            </button>
+          </div>
+        )}
       </header>
 
       <main>

@@ -22,7 +22,13 @@ export function PostCard({ post }: PostCardProps) {
           {content}
         </p>
 
-        {image && <div className="w-full h-[200px] bg-gray-700 my-3 rounded-lg"></div>}
+        {image &&
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-[200px] bg-gray-700 my-3 rounded-lg object-cover"
+          />
+        }
 
         <div className="flex items-center gap-1">
           <CiHeart size={24} color="red" />

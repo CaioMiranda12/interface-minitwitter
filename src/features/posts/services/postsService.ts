@@ -26,7 +26,7 @@ export interface GetPostsResponse {
 export interface CreatePostData {
   title: string
   content: string
-  imageUrl?: string
+  image?: string
 }
 
 export const getPosts = async (params?: GetPostsParams): Promise<GetPostsResponse> => {

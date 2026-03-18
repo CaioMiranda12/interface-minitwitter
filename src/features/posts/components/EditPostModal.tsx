@@ -10,10 +10,11 @@ interface EditPostModalProps {
 }
 
 export function EditPostModal({ post, onClose }: EditPostModalProps) {
-  const { register, onSubmit, errors, isPending, isError } = useEditPostForm(post, onClose)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview] = useState<string | null>(post.image ?? null)
+  const { register, onSubmit, errors, isPending, isError } = useEditPostForm(post, preview, onClose)
   const { ref: registerRef, onChange, ...imageRegister } = register('image')
+
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e)

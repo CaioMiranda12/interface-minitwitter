@@ -1,9 +1,11 @@
 import { CiHeart } from "react-icons/ci";
-import { deletePost, type Post } from "../services/postsService";
+import { type Post } from "../services/postsService";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import { useState } from "react";
 import { EditPostModal } from "./EditPostModal";
+import { useDeletePost } from "../hooks/useDeletePost";
+import { DeletePostModal } from "./DeletePostModal";
 interface PostCardProps {
   post: Post
 }
@@ -12,10 +14,17 @@ export function PostCard({ post }: PostCardProps) {
   const { title, content, image, authorName, createdAt, likesCount, authorId, id } = post
 
   const { isAuthenticated, user } = useAuth()
+  const { mutate: deletePost, isPending } = useDeletePost()
 
   const isOwner = isAuthenticated && user.id === authorId
   const [isEditing, setIsEditing] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
 
+  const handleConfirmDelete = () => {
+    deletePost(String(id), {
+      onSuccess: () => setIsDeleting(false)
+    })
+  }
 
   return (
     <div className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 flex flex-col gap-3">
@@ -35,7 +44,7 @@ export function PostCard({ post }: PostCardProps) {
             </button>
 
             <button
-              onClick={() => deletePost(id)}
+              onClick={() => setIsDeleting(true)}
               className="text-twitterGray hover:text-red-500 transition-colors"
             >
               <FiTrash2 size={16} />
@@ -68,6 +77,14 @@ export function PostCard({ post }: PostCardProps) {
         <EditPostModal
           post={post}
           onClose={() => setIsEditing(false)}
+        />
+      )}
+
+      {isDeleting && (
+        <DeletePostModal
+          onConfirm={handleConfirmDelete}
+          onClose={() => setIsDeleting(false)}
+          isPending={isPending}
         />
       )}
     </div>

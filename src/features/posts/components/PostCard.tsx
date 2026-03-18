@@ -6,6 +6,7 @@ import { useState } from "react";
 import { EditPostModal } from "./EditPostModal";
 import { useDeletePost } from "../hooks/useDeletePost";
 import { DeletePostModal } from "./DeletePostModal";
+import { useLike } from "../hooks/useLike";
 interface PostCardProps {
   post: Post
 }
@@ -19,6 +20,8 @@ export function PostCard({ post }: PostCardProps) {
   const isOwner = isAuthenticated && user.id === authorId
   const [isEditing, setIsEditing] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
+
+  const { mutate: toggleLike } = useLike()
 
   const handleConfirmDelete = () => {
     deletePost(String(id), {
@@ -67,10 +70,12 @@ export function PostCard({ post }: PostCardProps) {
           />
         }
 
-        <div className="flex items-center gap-1">
+        <button
+          onClick={() => toggleLike(String(id))}
+          className="flex items-center gap-1">
           <CiHeart size={24} color="red" />
           <span>{likesCount}</span>
-        </div>
+        </button>
       </main>
 
       {isEditing && (

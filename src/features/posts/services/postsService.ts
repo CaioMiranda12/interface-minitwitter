@@ -9,6 +9,7 @@ export interface Post {
   createdAt: string
   authorName: string
   likesCount: number
+  isLikedByUser?: boolean
 }
 
 export interface GetPostsParams {
@@ -27,6 +28,10 @@ export interface CreatePostData {
   title: string
   content: string
   image?: string
+}
+
+export interface LikeResponse {
+  liked: boolean
 }
 
 export const getPosts = async (params?: GetPostsParams): Promise<GetPostsResponse> => {
@@ -53,6 +58,7 @@ export const deletePost = async (id: string): Promise<void> => {
   await api.delete(`/posts/${id}`)
 }
 
-export const likePost = async (id: string): Promise<void> => {
-  await api.post(`/posts/${id}/like`)
+export const likePost = async (id: string): Promise<LikeResponse> => {
+  const response = await api.post<LikeResponse>(`/posts/${id}/like`)
+  return response.data
 }

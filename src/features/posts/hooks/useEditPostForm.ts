@@ -5,7 +5,7 @@ import { useEditPost } from './useEditPost'
 import { uploadImage } from '@/lib/uploadImage'
 import type { Post } from '../services/postsService'
 
-export const useEditPostForm = (post: Post, onSuccess?: () => void) => {
+export const useEditPostForm = (post: Post, preview: string | null, onSuccess?: () => void) => {
   const { mutate, isPending, isError } = useEditPost()
 
   const { register, handleSubmit, formState: { errors } } = useForm<EditPostFormData>({
@@ -17,14 +17,16 @@ export const useEditPostForm = (post: Post, onSuccess?: () => void) => {
   })
 
   const onSubmit = handleSubmit(async (data) => {
-    let imageUrl: string | undefined = post.image ?? undefined
+    let imageUrl: string | null = null
 
     if (data.image && data.image.length > 0) {
       imageUrl = await uploadImage(data.image[0])
+    } else if (preview) {
+      imageUrl = preview
     }
 
     mutate(
-      { id: String(post.id), data: { title: data.title, content: data.content, image: imageUrl } },
+      { id: String(post.id), data: { title: data.title, content: data.content, image: imageUrl ?? undefined } },
       { onSuccess: () => onSuccess?.() }
     )
   })

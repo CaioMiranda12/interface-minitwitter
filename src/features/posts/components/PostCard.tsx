@@ -7,6 +7,7 @@ import { EditPostModal } from "./EditPostModal";
 import { useDeletePost } from "../hooks/useDeletePost";
 import { DeletePostModal } from "./DeletePostModal";
 import { useLike } from "../hooks/useLike";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 interface PostCardProps {
   post: Post
 }
@@ -73,7 +74,11 @@ export function PostCard({ post }: PostCardProps) {
         <button
           onClick={() => toggleLike(String(id))}
           className="flex items-center gap-1">
-          <CiHeart size={24} color="red" />
+          {post.isLikedByUser ? (
+            <AiFillHeart size={24} color="red" />
+          ) : (
+            <AiOutlineHeart size={24} color="red" />
+          )}
           <span>{likesCount}</span>
         </button>
       </main>

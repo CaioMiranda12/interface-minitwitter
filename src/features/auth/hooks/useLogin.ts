@@ -16,6 +16,7 @@ export const useLogin = () => {
       }
 
       localStorage.setItem('token', response.token)
+      localStorage.setItem('user', JSON.stringify(response.user))
 
       toast.success('Seja bem-vindo ao Mini-Twitter!')
       navigate('/')

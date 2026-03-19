@@ -48,7 +48,7 @@ export function Header() {
       {!isAuthenticated ? (
         <nav>
           <button onClick={() => navigate('/register')}
-            className="text-twitterGray font-bold text-base border border-[#E2E8F0] rounded-full py-2 w-[156px]
+            className="text-twitterGray font-bold text-base border border-[#E2E8F0] rounded-full py-2 w-[156px] dark:text-white dark:border-[#62748E]
           hover:bg-twitterGray hover:text-white transition-colors duration-300 active:bg-twitterGray/80 active:text-white
           ">
             Registrar-se

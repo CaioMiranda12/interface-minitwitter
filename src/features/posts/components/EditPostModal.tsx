@@ -33,7 +33,7 @@ export function EditPostModal({ post, onClose }: EditPostModalProps) {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-xl w-full max-w-[520px] p-6 flex flex-col gap-4"
+        className="bg-white rounded-xl shadow-xl w-full max-w-[520px] p-6 flex flex-col gap-4 dark:bg-[#1D293D]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between">
@@ -48,7 +48,7 @@ export function EditPostModal({ post, onClose }: EditPostModalProps) {
             <input
               {...register('title')}
               placeholder="Título"
-              className="w-full outline-none border border-[#E2E8F0] rounded-lg px-3 py-2 text-sm"
+              className="w-full outline-none border border-[#E2E8F0] rounded-lg px-3 py-2 text-sm dark:bg-[#1D293D] dark:text-white dark:border-[#62748E]"
             />
             {errors.title && <span className="text-red-500 text-xs">{errors.title.message}</span>}
           </div>
@@ -58,7 +58,7 @@ export function EditPostModal({ post, onClose }: EditPostModalProps) {
               {...register('content')}
               placeholder="Conteúdo"
               rows={4}
-              className="w-full outline-none border border-[#E2E8F0] rounded-lg px-3 py-2 text-sm resize-none"
+              className="w-full outline-none border border-[#E2E8F0] rounded-lg px-3 py-2 text-sm resize-none dark:bg-[#1D293D] dark:text-white dark:border-[#62748E]"
             />
             {errors.content && <span className="text-red-500 text-xs">{errors.content.message}</span>}
           </div>
@@ -98,7 +98,7 @@ export function EditPostModal({ post, onClose }: EditPostModalProps) {
 
           {isError && <span className="text-red-500 text-xs">Erro ao editar post.</span>}
 
-          <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3">
+          <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-3 dark:border-[#62748E4D]">
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}

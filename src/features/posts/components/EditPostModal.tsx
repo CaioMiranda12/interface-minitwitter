@@ -112,8 +112,8 @@ export function EditPostModal({ post, onClose }: EditPostModalProps) {
                 type="button"
                 onClick={onClose}
                 disabled={isPending}
-                className="text-twitterGray font-bold text-sm border border-[#E2E8F0] rounded-full py-2 px-4
-                hover:bg-gray-100 transition-colors disabled:opacity-40"
+                className="text-twitterGray font-bold text-sm border border-[#E2E8F0] rounded-full py-2 px-4 dark:text-white dark:border-[#62748E]
+                hover:bg-twitterGray transition-colors disabled:opacity-40"
               >
                 Cancelar
               </button>

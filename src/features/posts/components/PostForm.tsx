@@ -43,12 +43,12 @@ export function PostForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4">
+      <form onSubmit={handleSubmit} className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 dark:bg-[#1D293D] dark:border-[#62748E]">
         {isExpanded && (
           <input
             {...register('title')}
             placeholder="Título do post"
-            className="w-full outline-none font-bold text-lg mb-2"
+            className="w-full outline-none font-bold text-lg mb-2 bg-transparent dark:text-white"
             autoFocus
           />
         )}
@@ -58,7 +58,7 @@ export function PostForm() {
           {...register('content')}
           onFocus={() => setIsExpanded(true)}
           placeholder="O que está acontecendo?"
-          className="w-full resize-none outline-none h-[72px]"
+          className="w-full resize-none outline-none h-[72px] bg-transparent dark:text-white"
         />
 
         {preview && (
@@ -102,7 +102,7 @@ export function PostForm() {
           className="hidden"
         />
 
-        <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-4">
+        <div className="flex items-center justify-between border-t border-[#E2E8F0] pt-4 dark:border-[#62748E4D]">
           <button
             type="button"
             disabled={isPending}

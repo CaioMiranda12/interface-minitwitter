@@ -8,7 +8,7 @@ export function Home() {
     <>
       <Header />
 
-      <main className="bg-[#FAFAFA] min-h-[calc(100vh-65px)] flex justify-center">
+      <main className="bg-[#FAFAFA] min-h-[calc(100vh-65px)] flex justify-center dark:bg-[#070B14]">
         <div className="mt-9 w-[640px]">
           <PostForm />
 
@@ -20,8 +20,8 @@ export function Home() {
         </div>
       </main>
 
-      <footer className="py-4 px-10 pt-[80px] bg-[#FAFAFA]">
-        <h2 className="text-primary text-lg font-bold">Mini Twitter</h2>
+      <footer className="py-4 px-10 pt-[80px] bg-[#FAFAFA] dark:bg-[#070B14]">
+        <h2 className="text-primary text-lg font-bold dark:text-white">Mini Twitter</h2>
       </footer>
     </>
   )

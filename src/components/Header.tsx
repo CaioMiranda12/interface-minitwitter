@@ -27,10 +27,10 @@ export function Header() {
   }
 
   return (
-    <header className="bg-[#FAFAFA] h-[65px] flex items-center justify-between px-10 border-b border-[#E2E8F0]">
-      <h1 className="text-primary text-lg font-bold">Mini Twitter</h1>
+    <header className="bg-[#FAFAFA] h-[65px] flex items-center justify-between px-10 border-b border-[#E2E8F0] dark:bg-[#070B14] dark:border-[#62748E]">
+      <h1 className="text-primary text-lg font-bold dark:text-white">Mini Twitter</h1>
 
-      <div className="flex items-center gap-2 bg-white border border-[#E2E8F0] rounded-lg px-4 py-2 w-[478px]">
+      <div className="flex items-center gap-2 bg-white border border-[#E2E8F0] rounded-lg px-4 py-2 w-[478px] dark:bg-[#1D293D] dark:border-none dark:text-white">
         <button onClick={handleSearch}>
           <CiSearch size={18} color="#62748E" />
         </button>
@@ -41,7 +41,7 @@ export function Header() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="placeholder:text-twitterGray outline-none w-full"
+          className="placeholder:text-twitterGray outline-none w-full bg-transparent"
         />
       </div>
 
@@ -66,7 +66,7 @@ export function Header() {
       ) : (
         <button
           onClick={() => logout()}
-          className="bg-primary p-2.5 rounded-full
+          className="bg-primary p-2.5 rounded-full dark:bg-[#1D293D]
         shadow-[0px_4px_6px_-4px_rgba(13,147,242,0.2),0px_10px_15px_-3px_rgba(13,147,242,0.2)]
         hover:opacity-80 transition-opacity duration-300 active:opacity-60
         ">

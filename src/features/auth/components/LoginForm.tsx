@@ -41,7 +41,7 @@ export const LoginForm = () => {
       </button>
 
       <div className='flex justify-center'>
-        <p className='w-80 text-center text-[#02274F] text-xs font-normal'>
+        <p className='w-80 text-center text-[#02274F] text-xs font-normal dark:text-[#94A3B8]'>
           Ao clicar em continuar, você concorda com nossos <span className='underline'>Termos de Serviço</span> e <span className='underline'>Política de Privacidade</span>.
         </p>
       </div>

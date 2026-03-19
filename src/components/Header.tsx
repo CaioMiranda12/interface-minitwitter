@@ -1,17 +1,15 @@
-import { useTheme } from "@/context/ThemeContext";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useLogout } from "@/features/auth/hooks/useLogout";
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useNavigate, useSearchParams } from "react-router";
+import { ThemeButton } from "./ThemeButton";
 
 export function Header() {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const { logout } = useLogout();
-  const { theme, toggleTheme } = useTheme();
 
   const [searchParams, setSearchParams] = useSearchParams()
   const search = searchParams.get('search') ?? ''
@@ -78,17 +76,7 @@ export function Header() {
           </button>
         )}
 
-        <button
-          onClick={toggleTheme}
-          className="p-2.5 rounded-full border border-[#E2E8F0] dark:border-gray-700
-  hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-        >
-          {theme === 'light' ? (
-            <MdOutlineDarkMode size={20} className="text-twitterGray" />
-          ) : (
-            <MdOutlineLightMode size={20} className="text-white" />
-          )}
-        </button>
+        <ThemeButton />
       </div>
     </header>
   )

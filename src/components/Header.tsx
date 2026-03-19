@@ -1,7 +1,9 @@
+import { useTheme } from "@/context/ThemeContext";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useLogout } from "@/features/auth/hooks/useLogout";
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useNavigate, useSearchParams } from "react-router";
 
@@ -9,6 +11,7 @@ export function Header() {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const { logout } = useLogout();
+  const { theme, toggleTheme } = useTheme();
 
   const [searchParams, setSearchParams] = useSearchParams()
   const search = searchParams.get('search') ?? ''
@@ -45,34 +48,48 @@ export function Header() {
         />
       </div>
 
-      {!isAuthenticated ? (
-        <nav>
-          <button onClick={() => navigate('/register')}
-            className="text-twitterGray font-bold text-base border border-[#E2E8F0] rounded-full py-2 w-[156px] dark:text-white dark:border-[#62748E]
+      <div className="flex gap-2">
+        {!isAuthenticated ? (
+          <nav>
+            <button onClick={() => navigate('/register')}
+              className="text-twitterGray font-bold text-base border border-[#E2E8F0] rounded-full py-2 w-[156px] dark:text-white dark:border-[#62748E]
           hover:bg-twitterGray hover:text-white transition-colors duration-300 active:bg-twitterGray/80 active:text-white
           ">
-            Registrar-se
-          </button>
+              Registrar-se
+            </button>
 
-          <button
-            onClick={() => navigate('/login')}
-            className="text-white font-bold text-base bg-primary rounded-full py-2 w-[156px]
+            <button
+              onClick={() => navigate('/login')}
+              className="text-white font-bold text-base bg-primary rounded-full py-2 w-[156px]
           shadow-[0px_4px_6px_-4px_rgba(13,147,242,0.2),0px_10px_15px_-3px_rgba(13,147,242,0.2)]
           hover:opacity-80 transition-opacity duration-300 active:opacity-60
           ">
-            Login
-          </button>
-        </nav>
-      ) : (
-        <button
-          onClick={() => logout()}
-          className="bg-primary p-2.5 rounded-full dark:bg-[#1D293D]
+              Login
+            </button>
+          </nav>
+        ) : (
+          <button
+            onClick={() => logout()}
+            className="bg-primary p-2.5 rounded-full dark:bg-[#1D293D]
         shadow-[0px_4px_6px_-4px_rgba(13,147,242,0.2),0px_10px_15px_-3px_rgba(13,147,242,0.2)]
         hover:opacity-80 transition-opacity duration-300 active:opacity-60
         ">
-          <RiLogoutBoxLine size={20} color='white' />
+            <RiLogoutBoxLine size={20} color='white' />
+          </button>
+        )}
+
+        <button
+          onClick={toggleTheme}
+          className="p-2.5 rounded-full border border-[#E2E8F0] dark:border-gray-700
+  hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          {theme === 'light' ? (
+            <MdOutlineDarkMode size={20} className="text-twitterGray" />
+          ) : (
+            <MdOutlineLightMode size={20} className="text-white" />
+          )}
         </button>
-      )}
+      </div>
     </header>
   )
 }

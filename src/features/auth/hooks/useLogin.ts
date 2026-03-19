@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { login } from '@/features/auth/services/authService'
 import type { LoginFormData } from '@/features/auth/schemas/authSchemas'
 import { toast } from 'react-toastify'
+import { useAuthContext } from '@/context/AuthContext'
 
 export const useLogin = () => {
   const navigate = useNavigate()
+  const { signIn } = useAuthContext()
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: LoginFormData) => login(data),
@@ -15,8 +17,7 @@ export const useLogin = () => {
         return
       }
 
-      localStorage.setItem('token', response.token)
-      localStorage.setItem('user', JSON.stringify(response.user))
+      signIn(response.token, response.user)
 
       toast.success('Seja bem-vindo ao Mini-Twitter!')
       navigate('/')

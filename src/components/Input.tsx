@@ -27,8 +27,8 @@ export default function Input<T extends FieldValues>({
       control={control}
       render={({ field }) => (
         <div className='flex flex-col'>
-          <label htmlFor={name} className='text-twitterGray font-normal text-sm mb-2'>{label}</label>
-          <div className={`flex items-center p-4 bg-white border rounded-lg gap-2 
+          <label htmlFor={name} className='text-twitterGray font-normal text-sm mb-2 dark:dark:text-[#90A1B9]'>{label}</label>
+          <div className={`flex items-center p-4 bg-white border rounded-lg gap-2 dark:bg-[#1D293D]
             ${errors?.[name] ? "border-red-500" : "border-gray-400"}
             focus-within:border-primary
             `}>
@@ -37,7 +37,7 @@ export default function Input<T extends FieldValues>({
               {...field}
               type={typeInput}
               placeholder={placeholderText}
-              className='w-full outline-none placeholder:text-twitterGray'
+              className='w-full outline-none placeholder:text-twitterGray bg-transparent'
             />
 
             {Icon && <Icon size={24} color="#62748E" />}

@@ -1,9 +1,3 @@
-export const useAuth = () => {
-  const token = localStorage.getItem('token')
-  const user = localStorage.getItem('user')
+import { useAuthContext } from "@/context/AuthContext";
 
-  return {
-    isAuthenticated: !!token,
-    user: user ? JSON.parse(user) : null,
-  }
-}
+export const useAuth = () => useAuthContext();

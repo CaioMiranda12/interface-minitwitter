@@ -6,6 +6,7 @@ import AppRoutes from './routes/index.tsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { AuthProvider } from './context/AuthContext.tsx'
+import { ThemeProvider } from './context/ThemeContext.tsx'
 
 
 const queryClient = new QueryClient()
@@ -14,7 +15,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <AppRoutes />
+        <ThemeProvider>
+          <AppRoutes />
+        </ThemeProvider>
       </AuthProvider>
       <ToastContainer pauseOnHover={false} theme="colored" autoClose={1500} />
     </QueryClientProvider>

@@ -7,6 +7,7 @@ import { useDeletePost } from "../hooks/useDeletePost";
 import { DeletePostModal } from "./DeletePostModal";
 import { useLike } from "../hooks/useLike";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { LoginModal } from "@/components/LoginModal";
 interface PostCardProps {
   post: Post
 }
@@ -14,14 +15,25 @@ interface PostCardProps {
 export function PostCard({ post }: PostCardProps) {
   const { title, content, image, authorName, createdAt, likesCount, authorId, id } = post
 
+
   const { isAuthenticated, user } = useAuth()
   const { mutate: deletePost, isPending } = useDeletePost()
 
   const isOwner = isAuthenticated && user?.id === authorId
   const [isEditing, setIsEditing] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
+  const [showLoginModal, setShowLoginModal] = useState(false)
 
   const { mutate: toggleLike } = useLike()
+
+  const handleLike = () => {
+    if (!isAuthenticated) {
+      setShowLoginModal(true)
+      return
+    }
+
+    toggleLike(String(id))
+  }
 
   const handleConfirmDelete = () => {
     deletePost(String(id), {
@@ -71,7 +83,7 @@ export function PostCard({ post }: PostCardProps) {
         }
 
         <button
-          onClick={() => toggleLike(String(id))}
+          onClick={handleLike}
           className="flex items-center gap-1 mt-3">
           {post.isLikedByUser ? (
             <AiFillHeart size={24} color="red" />
@@ -95,6 +107,10 @@ export function PostCard({ post }: PostCardProps) {
           onClose={() => setIsDeleting(false)}
           isPending={isPending}
         />
+      )}
+
+      {showLoginModal && (
+        <LoginModal onClose={() => setShowLoginModal(false)} />
       )}
     </div>
   )

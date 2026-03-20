@@ -17,9 +17,9 @@ export function LoginModal({ onClose }: LoginModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col gap-1">
-          <h2 className="text-[#314158] font-bold text-lg dark:text-white">Faça login para postar</h2>
+          <h2 className="text-[#314158] font-bold text-lg dark:text-white">Faça login para continuar</h2>
           <p className="text-twitterGray text-sm dark:text-[#90A1B9]">
-            Você precisa estar logado para criar um post e interagir com a comunidade.
+            Você precisa estar logado para interagir com a comunidade.
           </p>
         </div>
 

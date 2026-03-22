@@ -86,9 +86,9 @@ export function PostCard({ post }: PostCardProps) {
           onClick={handleLike}
           className="flex items-center gap-1 mt-3">
           {post.isLikedByUser ? (
-            <AiFillHeart size={24} color="red" />
+            <AiFillHeart data-testid="liked-icon" size={24} color="red" />
           ) : (
-            <AiOutlineHeart size={24} color="red" />
+            <AiOutlineHeart data-testid="unliked-icon" size={24} color="red" />
           )}
           <span className="text-black dark:text-white">{likesCount}</span>
         </button>

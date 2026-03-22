@@ -1,6 +1,6 @@
 
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { RegisterForm } from '../RegisterForm'
 import { describe, it, expect, vi } from 'vitest'
 import { BrowserRouter } from 'react-router-dom'
@@ -47,4 +47,21 @@ describe('RegisterForm', () => {
     render(<RegisterForm />, { wrapper })
     expect(screen.getByText(/termos de serviço/i)).toBeInTheDocument()
   })
+
+  it('alterna visibilidade da senha ao clicar no ícone do olho', async () => {
+    render(<RegisterForm />, { wrapper })
+
+    const passwordInput = screen.getByPlaceholderText('Insira a sua senha')
+
+    expect(passwordInput).toHaveAttribute('type', 'password')
+
+    const toggleButton = screen.getByTestId('toggle-password')
+    fireEvent.click(toggleButton)
+
+    expect(passwordInput).toHaveAttribute('type', 'text')
+
+    fireEvent.click(toggleButton)
+    expect(passwordInput).toHaveAttribute('type', 'password')
+  })
+
 })

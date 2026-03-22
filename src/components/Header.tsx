@@ -1,32 +1,15 @@
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useLogout } from "@/features/auth/hooks/useLogout";
-import { useState } from "react";
-import { CiSearch } from "react-icons/ci";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate } from "react-router";
 import { ThemeButton } from "./ThemeButton";
 import { Menu } from "./Menu";
+import { SearchInput } from "./SearchInput";
 
 export function Header() {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const { logout } = useLogout();
-
-  const [searchParams, setSearchParams] = useSearchParams()
-  const search = searchParams.get('search') ?? ''
-  const [inputValue, setInputValue] = useState(search)
-
-  const handleSearch = () => {
-    if (inputValue) {
-      setSearchParams({ search: inputValue })
-    } else {
-      setSearchParams({})
-    }
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') handleSearch()
-  }
 
   return (
     <header className="bg-[#FAFAFA] h-[65px] flex items-center justify-between px-3 md:px-10 border-b border-[#E2E8F0]  dark:bg-[#070B14] dark:border-[#62748E]">
@@ -34,20 +17,7 @@ export function Header() {
         <h1 className="text-primary text-lg font-bold dark:text-white">Mini Twitter</h1>
       </div>
 
-      <div className="hidden 2xl:flex w-[640px] items-center gap-2 bg-white border border-[#E2E8F0] rounded-lg px-4 py-2 dark:bg-[#1D293D] dark:border-none dark:text-white">
-        <button onClick={handleSearch}>
-          <CiSearch size={18} color="#62748E" />
-        </button>
-
-        <input
-          type="text"
-          placeholder="Buscar por post..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="placeholder:text-twitterGray outline-none w-full bg-transparent"
-        />
-      </div>
+      <SearchInput className="hidden 2xl:flex w-[640px]" />
 
       <div className="flex-1 flex justify-end gap-2">
         <div className="hidden md:flex gap-2">
@@ -85,8 +55,6 @@ export function Header() {
 
         <Menu />
       </div>
-
-
     </header>
   )
 }

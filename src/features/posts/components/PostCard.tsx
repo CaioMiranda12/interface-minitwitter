@@ -8,6 +8,7 @@ import { DeletePostModal } from "./DeletePostModal";
 import { useLike } from "../hooks/useLike";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { LoginModal } from "@/components/LoginModal";
+import { formatDate } from "@/utils/formatDate";
 interface PostCardProps {
   post: Post
 }
@@ -47,7 +48,7 @@ export function PostCard({ post }: PostCardProps) {
         <h3 className="text-[#314158] font-bold text-base dark:text-white">{authorName}</h3>
         <span className="text-twitterGray font-normal text-sm">@{authorName.toLowerCase().replace(' ', '')}</span>
         <span className="text-twitterGray font-normal text-sm">.</span>
-        <span className="text-twitterGray font-normal text-sm">{createdAt}</span>
+        <span className="text-twitterGray font-normal text-sm">{formatDate(createdAt)}</span>
 
         {isOwner && (
           <div className="ml-auto flex items-center gap-2">

@@ -26,7 +26,7 @@ export const useEditPostForm = (post: Post, preview: string | null, onSuccess?: 
     }
 
     mutate(
-      { id: String(post.id), data: { title: data.title, content: data.content, image: imageUrl ?? undefined } },
+      { id: post.id, data: { title: data.title, content: data.content, image: imageUrl ?? undefined } },
       { onSuccess: () => onSuccess?.() }
     )
   })

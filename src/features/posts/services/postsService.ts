@@ -1,11 +1,11 @@
 import api from '@/lib/api'
 
 export interface Post {
-  id: string
+  id: number
   title: string
   content: string
   image?: string | null
-  authorId: string
+  authorId: number
   createdAt: string
   authorName: string
   likesCount: number
@@ -39,7 +39,7 @@ export const getPosts = async (params?: GetPostsParams): Promise<GetPostsRespons
   return response.data
 }
 
-export const getPostById = async (id: string): Promise<Post> => {
+export const getPostById = async (id: number): Promise<Post> => {
   const response = await api.get<Post>(`/posts/${id}`)
   return response.data
 }
@@ -49,16 +49,16 @@ export const createPost = async (data: CreatePostData): Promise<Post> => {
   return response.data
 }
 
-export const editPost = async (id: string, data: Partial<CreatePostData>): Promise<Post> => {
+export const editPost = async (id: number, data: Partial<CreatePostData>): Promise<Post> => {
   const response = await api.put<Post>(`/posts/${id}`, data)
   return response.data
 }
 
-export const deletePost = async (id: string): Promise<void> => {
+export const deletePost = async (id: number): Promise<void> => {
   await api.delete(`/posts/${id}`)
 }
 
-export const likePost = async (id: string): Promise<LikeResponse> => {
+export const likePost = async (id: number): Promise<LikeResponse> => {
   const response = await api.post<LikeResponse>(`/posts/${id}/like`)
   return response.data
 }

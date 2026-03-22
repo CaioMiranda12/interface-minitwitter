@@ -5,7 +5,7 @@ export const useEditPost = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: string; data: Partial<CreatePostData> }) =>
+    mutationFn: ({ id, data }: { id: number; data: Partial<CreatePostData> }) =>
       editPost(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] })

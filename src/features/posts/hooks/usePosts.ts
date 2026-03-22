@@ -11,7 +11,7 @@ export const usePosts = (params?: Omit<GetPostsParams, 'page'>) => {
         ...result,
         posts: result.posts.map((post) => ({
           ...post,
-          isLikedByUser: isPostLiked(String(post.id)),
+          isLikedByUser: isPostLiked(post.id),
         })),
       }
     },

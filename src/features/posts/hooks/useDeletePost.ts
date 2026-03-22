@@ -5,7 +5,7 @@ export const useDeletePost = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (id: string) => deletePost(id),
+    mutationFn: (id: number) => deletePost(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] })
     },

@@ -32,11 +32,11 @@ export function PostCard({ post }: PostCardProps) {
       return
     }
 
-    toggleLike(String(id))
+    toggleLike(id)
   }
 
   const handleConfirmDelete = () => {
-    deletePost(String(id), {
+    deletePost(id, {
       onSuccess: () => setIsDeleting(false)
     })
   }

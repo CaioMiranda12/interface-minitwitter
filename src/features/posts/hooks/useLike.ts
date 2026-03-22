@@ -3,11 +3,11 @@ import { likePost } from '@/features/posts/services/postsService'
 
 const LIKES_STORAGE_KEY = 'user_likes'
 
-const getLikedPostIds = (): string[] => {
+const getLikedPostIds = (): number[] => {
   return JSON.parse(localStorage.getItem(LIKES_STORAGE_KEY) ?? '[]')
 }
 
-const saveLikeToStorage = (postId: string) => {
+const saveLikeToStorage = (postId: number) => {
   const likedIds = getLikedPostIds()
   const alreadyLiked = likedIds.includes(postId)
 
@@ -18,11 +18,11 @@ const saveLikeToStorage = (postId: string) => {
   localStorage.setItem(LIKES_STORAGE_KEY, JSON.stringify(updated))
 }
 
-export const isPostLiked = (postId: string): boolean => {
+export const isPostLiked = (postId: number): boolean => {
   return getLikedPostIds().includes(postId)
 }
 
-const updatePostInCache = (cachedData: any, postId: string, currentlyLiked: boolean) => {
+const updatePostInCache = (cachedData: any, postId: number, currentlyLiked: boolean) => {
   if (!cachedData?.pages) return cachedData
 
   return {
@@ -30,7 +30,7 @@ const updatePostInCache = (cachedData: any, postId: string, currentlyLiked: bool
     pages: cachedData.pages.map((page: any) => ({
       ...page,
       posts: page.posts.map((post: any) =>
-        String(post.id) === postId
+        post.id === postId
           ? {
             ...post,
             isLikedByUser: !currentlyLiked,
@@ -46,7 +46,7 @@ export const useLike = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (postId: string) => likePost(postId),
+    mutationFn: (postId: number) => likePost(postId),
 
     onMutate: async (postId) => {
       await queryClient.cancelQueries({ queryKey: ['posts'] })

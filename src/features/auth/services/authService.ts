@@ -12,7 +12,7 @@ export interface LoginData {
 
 export interface RegisterResponse {
   user: {
-    id: string
+    id: number
     name: string
     email: string
   }
@@ -21,7 +21,7 @@ export interface RegisterResponse {
 export interface LoginResponse {
   token: string
   user: {
-    id: string
+    id: number
     name: string
     email: string
   }

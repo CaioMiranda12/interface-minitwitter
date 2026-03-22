@@ -1,3 +1,4 @@
+import { ThemeButton } from "@/components/ThemeButton"
 import { LoginForm } from "@/features/auth/components/LoginForm"
 import { NavLink } from "react-router-dom"
 
@@ -5,6 +6,10 @@ export const LoginPage = () => {
 
   return (
     <div className="flex justify-center items-center h-[100vh] bg-[#FAFAFA] p-16 sm:p-0 dark:bg-[#070B14]">
+      <div className="fixed top-4 right-4">
+        <ThemeButton />
+      </div>
+
       <div className="w-full max-w-[480px]">
         <header>
           <h1 className="text-primary font-bold text-4xl text-center dark:text-white">Mini Twitter</h1>

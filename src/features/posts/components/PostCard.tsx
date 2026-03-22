@@ -42,7 +42,7 @@ export function PostCard({ post }: PostCardProps) {
   }
 
   return (
-    <div className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 flex flex-col gap-3 dark:bg-[#1D293D] dark:border-[#62748E]">
+    <div data-testid="post-card" className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 flex flex-col gap-3 dark:bg-[#1D293D] dark:border-[#62748E]">
       <header className="flex items-center gap-1.5">
         <h3 className="text-[#314158] font-bold text-base dark:text-white">{authorName}</h3>
         <span className="text-twitterGray font-normal text-sm">@{authorName.toLowerCase().replace(' ', '')}</span>
@@ -83,6 +83,7 @@ export function PostCard({ post }: PostCardProps) {
         }
 
         <button
+          data-testid="like-button"
           onClick={handleLike}
           className="flex items-center gap-1 mt-3">
           {post.isLikedByUser ? (

@@ -43,7 +43,10 @@ export function PostForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 dark:bg-[#1D293D] dark:border-[#62748E]">
+      <form
+        data-testid="post-form"
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md border border-[#E2E8F0] rounded-lg p-4 dark:bg-[#1D293D] dark:border-[#62748E]">
         {isExpanded && (
           <input
             {...register('title')}
